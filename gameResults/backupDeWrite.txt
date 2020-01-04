@@ -1,0 +1,68 @@
+ @Override
+    public boolean saveResultsToFile() throws IOException, ParseException {
+        
+        
+        /*
+        o que tava aqui antes
+        
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("results.txt"))) {
+            for (int i = 0; i < this.classificationManagement.getClassificacao().length; i++) {
+                out.writeObject(this.classificationManagement.getObject(i));
+            }
+
+            return true;
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(RaceResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            return false;
+        }
+        */
+        /*
+        o processo de gravar será o seguinte:
+        imaginemos que temos um array com os resultados
+        este tem que estar ordenado
+        depois passamos por todas as posicoes ate um maximo de 7
+        e vamos insrindo no obj json
+        depois é que gravamos
+        */
+        
+        
+        JSONObject obj = new JSONObject();
+        JSONArray results = new JSONArray();
+        /*tudo isto terá um for para poder inserir todos
+        NOTA!: que temos que fazer new da positionSetails e linha pois
+        estes nao podem ter informacao do anterior (o obj é o final
+        e o resutls é o array em si por isso tambem tem de estar fora para nao o
+        apagarmos)*/
+        
+        JSONObject positionDetails = new JSONObject();
+        JSONObject linha = new JSONObject();
+        this.classificationManagement.getClassificacao()[0].getPilot().getName();
+        positionDetails.put("Vehicle", "car");
+        positionDetails.put("PilotName", "Telmo");
+        positionDetails.put("PilotId", 77);
+        positionDetails.put("BestLap", 17523);
+        positionDetails.put("TotalLaps", 2);
+        positionDetails.put("BestTimes", 30450);
+        
+        linha.put("Position",1);
+        linha.put("positionDetails", positionDetails);
+        
+        results.add(linha);
+        
+        
+        
+        obj.put("Results", results);
+        
+        
+        // try-with-resources statement based on post comment below :)
+        try (FileWriter file = new FileWriter("gameResults\\result"+1+".txt")) {
+                file.write(obj.toJSONString());
+                System.out.println("Successfully Copied JSON Object to File...");
+                System.out.println("\nJSON Object: " + obj);
+                return true;
+        } catch(IOException ex){
+            System.out.println("UPS!!");
+            return false;
+        }
+        
+    }

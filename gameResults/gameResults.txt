@@ -1,0 +1,27 @@
+/*exemplo de tal e qual como estava no moodle*/
+
+
+[
+	{
+		"Position":1,
+		"positionDetails":{
+			"Vehicle":"car",
+			"PilotName":"Telmo",
+			"PilotId":77,
+			"BestLap":17523,
+			"TotalLaps":2,
+			"BestTimes":30450
+		}
+	},
+	{
+		"Position":2,
+		"positionDetails":{
+			"Vehicle":"car",
+			"PilotName":"Telmo",
+			"PilotId":77,
+			"BestLap":20394,
+			"TotalLaps":1,
+			"BestTimes":20394
+		}
+	}
+]
